@@ -1,5 +1,5 @@
 Attribute VB_Name = "Module1"
-'All of my code has stopped working saying "external
+'some of my code has stopped working saying "external
 Sub FunnyBusiness()
 
 'declare to the computer the variables you will be referencing. ws means the Worksheet you are on
@@ -62,7 +62,7 @@ End Sub
 
 'Defining/Declaring time. Still need to dim ws as worksheet so it knows range, then declare the unique tickers as range, as well as the opening price
 'Column cells as range, and then finally, where you want to display the totals as a range. We are working with three main ranges.
-'Sum’s should be as double because we don’t want to lose any decimal places in calculations
+'Sum√ïs should be as double because we don√ït want to lose any decimal places in calculations
 Sub OpenPriceSums()
     Dim ws As Worksheet
     Dim ticker As Range
@@ -77,11 +77,11 @@ Sub OpenPriceSums()
     For Each ws In ThisWorkbook.Sheets
 'For each unique marker the corresponding sum starts at 0
         For Each ticker In ws.Range("J2", ws.Cells(ws.Rows.Count, "J").End(xlUp))
-            ' need the sum to start out at 0, it won’t do it automatically unless you say it
+            ' need the sum to start out at 0, it won√ït do it automatically unless you say it
 
             totalSum = 0
 
-'For each opening price in the range of column C, if it is not empty and if the value of that row’s A column equals the string letter value from our ticker column, the cells for J, then add the value to our opening sum for that ticker. Aka, add it to the column next to the proper ticker in Cell J.
+'For each opening price in the range of column C, if it is not empty and if the value of that row√ïs A column equals the string letter value from our ticker column, the cells for J, then add the value to our opening sum for that ticker. Aka, add it to the column next to the proper ticker in Cell J.
 
             For Each openPrice In ws.Range("C2", ws.Cells(ws.Rows.Count, "C").End(xlUp))
                 If Not IsEmpty(openPrice.Value) And ws.Cells(openPrice.Row, "A").Value = ticker.Value Then
@@ -130,7 +130,7 @@ Sub YearlyChange()
 'Going to be populating column M of this sheet with the yearly change values, this is one of our ranges
     Set YearlyChangeColumn = ActiveSheet.Columns("M")
 
-'Need to do this for every sheet in the workbook, for each ticker in column J, we will use the open price drawn from the open price totals for that ticker ‘row from column K
+'Need to do this for every sheet in the workbook, for each ticker in column J, we will use the open price drawn from the open price totals for that ticker √îrow from column K
 'same for closing price
 'Then yearly change is close - open.
 'Then store under our yearly change column, same row, WHY IS IT TICKER.ROW, 1, NOT TICKER.ROW, M
@@ -142,7 +142,7 @@ Sub YearlyChange()
 
             YearlyChange = closePrice.Value - openPrice.Value
 
-'It could be ticker.Row, M instead of ticker.Row, 1, but apparently ticker.Row, 1 means same row as the ticker, and “first column” of the ‘YearlyChangeColumn, there is only one Yearly Change Column so it’s kinda silly, but it still works and would provide more flexibility if we needed multiple columns of deciphering in the yearly change chart
+'It could be ticker.Row, M instead of ticker.Row, 1, but apparently ticker.Row, 1 means same row as the ticker, and √ífirst column√ì of the √îYearlyChangeColumn, there is only one Yearly Change Column so it√ïs kinda silly, but it still works and would provide more flexibility if we needed multiple columns of deciphering in the yearly change chart
 
             YearlyChangeColumn.Cells(ticker.Row, 1).Value = YearlyChange
 
@@ -151,7 +151,7 @@ Sub YearlyChange()
 End Sub
 
 
-'Okie dokie so when I tried this for the whole workbook instead of just sheet A it froze my excel, and I don’t really need to run it for the whole
+'Okie dokie so when I tried this for the whole workbook instead of just sheet A it froze my excel, and I don√ït really need to run it for the whole
 'Workbook because my data for this particular step is all on sheet A, and it could have been getting confused by all of the empty cells
 
 Sub yearlyChangePercentageForSheetA()
@@ -173,7 +173,7 @@ Sub yearlyChangePercentageForSheetA()
         Set closePrice = ws.Cells(ticker.Row, "L")
 
 'If the opening price does not equal 0, because we do not want to divide by a zero and get funky calculations, then do the yearly change percentage
-‘calculation
+√îcalculation
 'If it does equal zero, then put zero
 
         If openPrice.Value <> 0 Then
@@ -200,7 +200,7 @@ Sub TSVolume()
 
     For Each ws In ThisWorkbook.Sheets
         For Each ticker In ws.Range("J2", ws.Cells(ws.Rows.Count, "J").End(xlUp))
-‘Counter
+√îCounter
             totalSum = 0
 
             For Each volume In ws.Range("G2", ws.Cells(ws.Rows.Count, "G").End(xlUp))
@@ -304,11 +304,11 @@ Sub PopulateGreatestVolumeValues()
             Dim volumeValue As Double
             volumeValue = stockvol.Value
 
-'if the stock value, which then becomes the volumeValue, is bigger than the maxVolume(which starts as ‘zero), then the maxVolume becomes the volumeValue and continues from there. The next value will have ‘to be bigger in order to override it.
+'if the stock value, which then becomes the volumeValue, is bigger than the maxVolume(which starts as √îzero), then the maxVolume becomes the volumeValue and continues from there. The next value will have √îto be bigger in order to override it.
             If volumeValue > maxVolume Then
                 maxVolume = volumeValue
 
-'Get the ticker associated with it, the value in the tickers column, which we have defined as column J, the ‘first and only column of that set, row=same row as stockvol. It’s within the loop though so it will keep ‘changing according to the previous.
+'Get the ticker associated with it, the value in the tickers column, which we have defined as column J, the √îfirst and only column of that set, row=same row as stockvol. It√ïs within the loop though so it will keep √îchanging according to the previous.
                 Set tick = tickers.Cells(stockvol.Row, 1)
                 maxTicker = tick.Value
             End If
